@@ -1,4 +1,4 @@
-# Personal Finance Dashboard Frontend Assignment
+# Personal Finance Dashboard Frontend 
 
 This repository contains the source code for the Personal Finance Dashboard, built using HTML, CSS, and vanilla JavaScript (with the Chart.js library for visualization). It fulfills all requirements, including responsive design and local data storage.
 

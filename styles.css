@@ -1,0 +1,320 @@
+/* CSS custom properties for consistent theming [cite: 36] */
+:root {
+    --color-primary: #007bff; /* Blue for professional feel [cite: 47] */
+    --color-income: #28a745; /* Green for positive actions [cite: 47] */
+    --color-expense: #dc3545; /* Red for negative */
+    --color-investment: #ffc107; /* Yellow for investments */
+    --color-text: #333;
+    --color-bg: #f4f7f6;
+    --color-card-bg: #ffffff;
+    --color-border: #e9ecef;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height:1.5;
+    /* Fast loading times and smooth scrolling [cite: 57] */
+}
+
+.container {
+    padding: 10px; /* Small padding for mobile-first  */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styling */
+.dashboard-header {
+    background-color: var(--color-card-bg);
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid var(--color-primary);
+    transition: border-color 0.3s ease;
+}
+
+.dashboard-header h1 {
+    color: var(--color-primary);
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    user-select: none;
+}
+
+/* Responsive Grid Layout for Main Content  */
+.dashboard-grid {
+    display: flex;
+    flex-direction: column; /* Stacking for mobile */
+    gap: 20px;
+}
+
+/* General Card Styling */
+.card {
+    background-color: var(--color-card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Summary Cards Styling */
+.summary-cards {
+    display: grid;
+    /* Single column for mobile [cite: 56] */
+    grid-template-columns: 1fr; 
+    gap: 20px;
+}
+
+.summary-cards .card {
+    text-align: center;
+    border-left: 5px solid var(--color-primary);
+}
+
+.summary-cards .total-balance {
+    border-left-color: var(--color-primary);
+}
+.summary-cards .monthly-income {
+    border-left-color: var(--color-income);
+}
+.summary-cards .expense-overview {
+    border-left-color: var(--color-expense);
+}
+.summary-cards .investment-portfolio {
+    border-left-color: var(--color-investment);
+}
+
+.summary-cards h3 {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.balance-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Transaction Form Styling */
+.transaction-management h2 {
+    margin-bottom: 20px;
+    color: var(--color-primary);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    /* Touch-friendly button sizes (minimum 44px) [cite: 55] */
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    min-height: 44px;
+    transition: background-color 0.3s ease; /* Smooth transitions [cite: 37] */
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Data Visualization Styling */
+.data-visualization h2 {
+    margin-bottom: 20px;
+    color: var(--color-primary);
+}
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chart-item h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Transaction History Table Styling */
+.transaction-history h2 {
+    margin-bottom: 10px;
+    color: var(--color-primary);
+}
+
+.filter-controls {
+    margin-bottom: 15px;
+}
+
+.filter-controls select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+table th {
+    background-color: var(--color-bg);
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* Responsive Media Queries for Tablet/Desktop */
+@media (min-width: 768px) {
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+    .summary-cards {
+        /* Two columns for tablets */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .chart-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .chart-item {
+        /* Two items per row on larger screens */
+        flex: 1 1 calc(50% - 10px); 
+    }
+    .chart-item.full-width {
+        flex: 1 1 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 20px;
+    }
+    .dashboard-grid {
+        /* Three-column layout for desktop */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            "summary summary summary"
+            "form form charts"
+            "history history history";
+        gap: 20px;
+    }
+    .summary-cards {
+        grid-area: summary;
+        /* Four equal columns for desktop */
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .transaction-management {
+        grid-area: form;
+    }
+    .data-visualization {
+        grid-area: charts;
+        /* Charts take up less space, stacked vertically */
+        grid-template-columns: 1fr;
+    }
+    .transaction-history {
+        grid-area: history;
+    }
+    .chart-container {
+        flex-direction: column;
+    }
+    .chart-item {
+        flex: 1 1 100%; 
+    }
+}
+
+/* Toast Notification Styling */
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 12px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+#toast.show {
+    visibility: visible;
+    opacity: 0.9;
+}
+
+/* Delete Button Styling */
+.delete-btn {
+    background-color: var(--color-expense);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.4);
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #b02a37; /* Darker red */
+}
+
+/* Clear Data Button Styling */
+.clear-data-btn {
+    background-color: white;
+    color: var(--color-expense);
+    border: 2px solid var(--color-expense);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 12px;
+    user-select: none;
+}
+
+.clear-data-btn:hover {
+    background-color: var(--color-expense);
+    color: white;
+}

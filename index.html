@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>My Finance Tracker</h1>
+        </header>
+
+        <main class="dashboard-grid">
+            <section class="summary-cards">
+                <div class="card total-balance">
+                    <h3>Total Balance</h3>
+                    <p class="balance-amount" id="totalBalance">₹0.00</p>
+                </div>
+                <div class="card monthly-income">
+                    <h3>Monthly Income</h3>
+                    <p id="monthlyIncome">₹0.00</p>
+                </div>
+                <div class="card expense-overview">
+                    <h3>Monthly Expenses</h3>
+                    <p id="monthlyExpenses">₹0.00</p>
+                </div>
+                <div class="card investment-portfolio">
+                    <h3>Investment Value</h3>
+                    <p id="investmentValue">₹0.00</p>
+                </div>
+            </section>
+
+            <section class="transaction-management card">
+                <h2>Add New Transaction
+                    <button type="button" id="clearDataBtn" class="clear-data-btn" title="Clear all saved transactions">Clear Data</button>
+                </h2>
+                <form id="transactionForm">
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select id="type" required>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                            <option value="investment">Investment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" required placeholder="e.g., Groceries or Salary">
+                    </div>
+                    <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" required min="0.01" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" required>
+                            <option value="Salary">Salary</option>
+                            <option value="Food">Food</option>
+                            <option value="Housing">Housing</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Investment">Investment</option>
+                            <option value="Deposit">Deposit</option>
+                            <option value="Personal Expense">Personal Expense</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Transaction</button>
+                    <div class="error-message" id="formError"></div>
+                </form>
+            </section>
+
+            <section class="data-visualization card">
+                <h2>Financial Health</h2>
+                <!-- <div class="filter-controls">
+                    <label for="filterCategory">Filter by Category:</label>
+                    <select id="filterCategory">
+                        <option value="all">All Categories</option>
+                        </select>
+                        <label for="filterMonth">Filter by Month:</label>
+                        <select id="filterMonth">
+                            <option value="all">All Time</option>
+                        </select>
+                </div> -->
+                <div class="chart-container">
+                    <div class="chart-item">
+                        <h3>Expense Breakdown (Pie Chart)</h3>
+                        <canvas id="expensePieChart"></canvas>
+                    </div>
+                    <div class="chart-item">
+                        <h3>Income vs Expenses (Bar Chart)</h3>
+                        <canvas id="incomeVsExpensesBarChart"></canvas>
+                    </div>
+                    <div class="chart-item full-width">
+                        <h3>Monthly Spending Trends (Line Chart)</h3>
+                        <canvas id="spendingTrendsLineChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="transaction-history card full-width">
+                <h2>Transaction History</h2>
+                <div class="filter-controls">
+                    <label for="filterCategory">Filter by Category:</label>
+                    <select id="filterCategory">
+                        <option value="all">All Categories</option>
+                        </select>
+                        <label for="filterMonth">Filter by Month:</label>
+                        <select id="filterMonth">
+                            <option value="all">All Time</option>
+                        </select>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTableBody">
+                        </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    
+    <div id="toast"></div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
